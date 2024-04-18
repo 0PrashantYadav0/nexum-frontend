@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -28,7 +29,7 @@ export default function SignIn() {
         'Content-Type': 'application/json',
         },
       });
-      const data = await res.json();
+      const data = res.data;
       if(data.user === null){
         dispatch(signInFailure('Invalid credentials'));
         throw new Error('Invalid credentials');

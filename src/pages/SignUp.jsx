@@ -25,7 +25,8 @@ export default function SignUp() {
     setFormData({
       ...formData,
       [e.target.id]: e.target.value,
-    });
+    })
+    console.log(formData);
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -36,7 +37,8 @@ export default function SignUp() {
           'Content-Type': 'application/json',
         },
       });
-      const data = await res.json();
+      const data = res.data;
+      console.log(res)
       console.log(data)
       if (data.token === null) {
         setLoading(false);
@@ -49,13 +51,26 @@ export default function SignUp() {
         document.cookie = `token=${data.token}`;
       }
       dispatch(signInSuccess(data));
-      navigate('/');
+      if(data.user.role === "WORKER"){
+        navigate('/worker-signin');
+      }else{
+        navigate('/');
+      }
     } catch (error) {
       setLoading(false);
       dispatch(signInFailure(error.message));
       setError(error.message);
     }
   };
+
+  const handleCheckChange = (e) => {
+    if(e.target.checked){
+      setFormData({...formData, role:"WORKER"})
+    }else{
+      setFormData({...formData, role:"USER"})
+    }
+  }
+
   return (
     <div className='p-3 max-w-lg mx-auto'>
       <h1 className='text-3xl text-center font-semibold my-7'>Sign Up</h1>
@@ -89,6 +104,10 @@ export default function SignUp() {
           {loading ? 'Loading...' : 'Sign Up'}
         </button>
         <OAuth/>
+        <div className='flex gap-4'>
+        <p>Sign In as Worker : </p>
+          <input type="checkbox" value={"WORKER"} onChange={handleCheckChange} onAbort={()=>setFormData({...formData, role:"USER"})}/>
+        </div>
       </form>
       <div className='flex gap-2 mt-5'>
         <p>Have an account?</p>

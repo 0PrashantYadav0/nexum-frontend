@@ -91,26 +91,6 @@ export default function Profile() {
     }
   };
 
-  const handleDeleteUser = async () => {
-    try {
-      dispatch(deleteUserStart());
-      const token = `Bearer ${currentUser.token}`;
-      const res = await axios.delete(`/api/delete/${currentUser.user.id}`, {
-        headers: {
-          'Authorization': String(token),
-        },
-      });
-      const data = await res.json();
-      if (data.user !== null) {
-        dispatch(deleteUserFailure(data.message));
-        return;
-      }
-      dispatch(deleteUserSuccess(data));
-      navigate('/sign-in')
-    } catch (error) {
-      dispatch(deleteUserFailure(error.message));
-    }
-  };
 
   const handleSignOut = async () => {
     try {
@@ -122,16 +102,13 @@ export default function Profile() {
           'Authorization': String(token),
         },
       });
-      const data = await res.json();
-      console.log(data,"data")
-      if (data.user !== null) {
-        dispatch(deleteUserFailure(data));
-        return;
+      // const data = await res.json();
+      if(res.status == 200){
+        dispatch(signOutUserSuccess());
+        navigate('/sign-in')
       }
-      dispatch(signOutUserSuccess(data));
-      navigate('/sign-in')
     } catch (error) {
-      dispatch(signOutUserFailure("Error in signout"));
+      console.log(error)
     }
   };
 
@@ -211,14 +188,13 @@ export default function Profile() {
       </form>
       <div className='flex justify-between mt-5'>
         <span
-          onClick={handleDeleteUser}
-          className='text-red-700 cursor-pointer'
+          className='text-blue-700 cursor-pointer'
         >
-          Delete account
+          {currentUser.user.role === 'WORKER' ? <Link to={"/dashboard"}> Visit Your DashBoard </Link> : <Link to={"/workers"}> Hire new Worker </Link> }
         </span>
-        <span onClick={handleSignOut} className='text-red-700 cursor-pointer'>
+        <button onClick={handleSignOut} className='text-red-700 cursor-pointer'>
           Sign out
-        </span>
+        </button>
       </div>
 
       <p className='text-red-700 mt-5'>{error ? error : ''}</p>

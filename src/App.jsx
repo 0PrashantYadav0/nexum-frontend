@@ -9,6 +9,7 @@ import PrivateRoute from './components/PrivateRoute';
 import CreateListing from './pages/CreateWorker';
 import AuthLayout from "./components/AuthLayout"
 import ContactUs from './pages/ContactUs';
+import WrokerProtected from './components/WorkerProtected';
 
 export default function App() {
   return (
@@ -20,9 +21,9 @@ export default function App() {
         <Route path='/sign-up' element={<AuthLayout authentication={false}><SignUp /></AuthLayout>} />
         <Route path='/about' element={<About />} />
         <Route path='/contactus' element={<ContactUs />} />
+        <Route path='/worker-signin' element={<WrokerProtected><CreateListing /></WrokerProtected>} />
         <Route element={<PrivateRoute />}>
           <Route path='/profile' element={<Profile />} />
-          <Route path='/worker-signin' element={<CreateListing />} />
         </Route>
       </Routes>
     </BrowserRouter>
