@@ -190,7 +190,7 @@ export default function Profile() {
         <span
           className='text-blue-700 cursor-pointer'
         >
-          {currentUser.user.role === 'WORKER' ? <Link to={"/dashboard"}> Visit Your DashBoard </Link> : <Link to={"/workers"}> Hire new Worker </Link> }
+          {currentUser.user.role === 'WORK' ? <Link to={"/dashboard"}> Visit Your DashBoard </Link> : <Link to={"/workers"}> Hire new Worker </Link> }
         </span>
         <button onClick={handleSignOut} className='text-red-700 cursor-pointer'>
           Sign out

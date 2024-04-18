@@ -51,7 +51,7 @@ export default function SignUp() {
         document.cookie = `token=${data.token}`;
       }
       dispatch(signInSuccess(data));
-      if(data.user.role === "WORKER"){
+      if(data.user.role === "WORK"){
         navigate('/worker-signin');
       }else{
         navigate('/');
@@ -65,7 +65,7 @@ export default function SignUp() {
 
   const handleCheckChange = (e) => {
     if(e.target.checked){
-      setFormData({...formData, role:"WORKER"})
+      setFormData({...formData, role:"WORK"})
     }else{
       setFormData({...formData, role:"USER"})
     }
