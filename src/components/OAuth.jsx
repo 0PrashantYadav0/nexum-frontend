@@ -1,10 +1,10 @@
 import { GoogleAuthProvider, getAuth, signInWithPopup } from 'firebase/auth';
 import { app } from '../firebase';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { signInSuccess } from '../redux/user/userSlice';
 import { useNavigate } from 'react-router-dom';
 
-export default function OAuth() {
+export default function OAuth({role = 'USER'}) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const handleGoogleClick = async () => {
@@ -23,11 +23,15 @@ export default function OAuth() {
           username: result.user.displayName,
           email: result.user.email,
           photoUrl: result.user.photoURL,
+          role: role,
         }),
       });
       const data = await res.json();
       dispatch(signInSuccess(data));
-      navigate('/');
+      if(role === "WORK"){
+        navigate('/worker-signin');
+      }
+      else navigate('/');
     } catch (error) {
       console.log('could not sign in with google');
     }

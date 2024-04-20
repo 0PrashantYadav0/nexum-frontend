@@ -1,10 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { set } from 'firebase/database';
 
 const initialState = {
   currentUser: null,
   error: null,
   loading: false,
   status:false,
+  workerFirst: false,
 };
 
 const userSlice = createSlice({
@@ -19,11 +21,13 @@ const userSlice = createSlice({
       state.loading = false;
       state.error = null;
       state.status = true;
+      state.workerFirst = false;
     },
     signInFailure: (state, action) => {
       state.error = action.payload;
       state.loading = false;
       state.status = false;
+      state.workerFirst = false;
     },
     updateUserStart: (state) => {
       state.loading = true;
@@ -32,10 +36,12 @@ const userSlice = createSlice({
       state.currentUser = action.payload;
       state.loading = false;
       state.error = null;
+      state.workerFirst = false;
     },
     updateUserFailure: (state, action) => {
       state.error = action.payload;
       state.loading = false;
+      state.workerFirst = false;
     },
     deleteUserStart: (state) => {
       state.loading = true;
@@ -58,10 +64,18 @@ const userSlice = createSlice({
       state.loading = false;
       state.error = null;
       state.status = false;
+      state.workerFirst = false;
     },
     signOutUserFailure: (state, action) => {
       state.error = action.payload;
       state.loading = false;
+      state.workerFirst = false;
+    },
+    setWorkerStatus: (state) => {
+      state.workerFirst = true;
+    },
+    removeWorkerStatus: (state) => {
+      state.workerFirst = false;
     },
   },
 });
@@ -79,6 +93,8 @@ export const {
   signOutUserFailure,
   signOutUserSuccess,
   signOutUserStart,
+  setWorkerStatus,
+  removeWorkerStatus,
 } = userSlice.actions;
 
 export default userSlice.reducer;

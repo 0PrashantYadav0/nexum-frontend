@@ -9,33 +9,35 @@ import { app } from '../firebase';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { removeWorkerStatus } from '../redux/user/userSlice';
-import { Input } from 'postcss';
+import Input from './Input';
 
-export default function CreateWorker() {
+function EditWorker({worker}) {
   const {currentUser} = useSelector((state) => state.user);
+  const [success, setSuccess] = useState("");
   const user = currentUser.user;
   const fileRef = useRef(null);
   const [files, setFiles] = useState([]);
   const images = [];
   const [formData, setFormData] = useState({
-    userId: user.id,
-    aadharNo: '',
-    address: '',
-    city: '',
-    country: '',
-    email: user.email,
-    experience: '',
-    firstName: '',
-    lastName: '',
-    middleName: '',
-    phoneNo: '',
-    photoUrl: user.photoUrl,
-    skills: '',
-    about: '',
-    state: '',
-    userName: user.username
-  });
-  const [imageUploadError, setImageUploadError] = useState(false);
+  aadharNo: worker.aadharNo,
+  about: worker.about,
+  address: worker.address,
+  city: worker.city,
+  country: worker.country,
+  email: worker.email,
+  experience: worker.experience,
+  firstName: worker.firstName,
+  lastName: worker.lastName,
+  middleName: worker.middleName,
+  phoneNo: worker.phoneNo,
+  photoUrl: worker.photoUrl,
+  skills: worker.skills,
+  state: worker.state,
+  userId: worker.userId,
+  userName: worker.userName,
+})
+
+const [imageUploadError, setImageUploadError] = useState(false);
   const [uploading, setUploading] = useState(false);
   const [filePerc, setFilePerc] = useState();
   const [error, setError] = useState(false);
@@ -125,8 +127,8 @@ export default function CreateWorker() {
       })
       setLoading(true);
       setError(false);
-      const res = await fetch('/api/worker/addWorker', {
-        method: 'POST',
+      const res = await fetch('/api/worker/updateWorker', {
+        method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
         },
@@ -134,32 +136,32 @@ export default function CreateWorker() {
       });
       const data = await res.json();
       setLoading(false);
-      if (data.status === "Success") {
-        dispatch(removeWorkerStatus())
-        navigate('/')
-      }
+      setSuccess(data.message);
     } catch (error) {
       setError(error.message);
       setLoading(false);
     }
   };
+
+
   return (
     <main className='p-3 max-w-4xl mx-auto flex flex-col'>
-      <h1 className='text-3xl font-semibold text-center my-7'>
-        Create a Worker
+      <h1 className='text-3xl font-semibold text-center'>
+        Update Worker
       </h1>
+      <p className='text-blue-800 text-center py-2'>{success}</p>
       <form className='flex flex-col sm:flex-row gap-4'>
         <div>
         <div className='grid md:grid-cols-3 sm:grid-cols-2 gap-4'>
             <Input
               type='text'
               placeholder='Username'
-              label="Username"
+              label='Username'
               className='mx-4 border p-3 rounded-lg'
               id='userName'
+              value={formData.userName}
               required
-              onChange={handleChange}
-              value={user.username}
+              readOnly
             />
             <Input
               type='text'
@@ -198,7 +200,7 @@ export default function CreateWorker() {
               id='email'
               required
               onChange={handleChange}
-              value={user.email}
+              value={formData.email}
             />
             <Input
               type='number'
@@ -208,7 +210,7 @@ export default function CreateWorker() {
               id='phoneNo'
               required
               onChange={handleChange}
-              value={user.phoneNumber}
+              value={formData.phoneNo}
             />
             <Input
               type='text'
@@ -233,7 +235,7 @@ export default function CreateWorker() {
             <Input
               type='text'
               placeholder='state'
-              label='State'
+              label='state'
               className='mx-4 border p-3 rounded-lg'
               id='state'
               required
@@ -281,7 +283,7 @@ export default function CreateWorker() {
             value={formData.experience}
           />
           </div>
-          <div className='mx-4 my-4  flex flex-col'>
+          <div className='flex mx-4 flex-col my-4'>
             <label htmlFor="about">About</label>
           <textarea
             type='text'
@@ -344,7 +346,7 @@ export default function CreateWorker() {
                   className='p-3 bg-slate-700 text-white rounded-lg uppercase hover:opacity-95 disabled:opacity-80'
                   onClick={handleSubmit}
                 >
-                  {loading ? 'Creating...' : 'Create listing'}
+                  {loading ? 'Updating...' : 'Upadate Worker'}
                 </button>
                 {error && <p className='text-red-700 text-sm'>{error}</p>}
               </div>
@@ -353,5 +355,7 @@ export default function CreateWorker() {
         </div>
       </form>
     </main>
-  );
+  )
 }
+
+export default EditWorker

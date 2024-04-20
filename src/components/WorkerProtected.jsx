@@ -3,5 +3,6 @@ import { Outlet, Navigate } from 'react-router-dom';
 
 export default function WrokerProtected() {
   const { currentUser } = useSelector((state) => state.user);
-  return currentUser.user === "WORK" ? <Outlet /> : <Navigate to='/' />;
+  if(!currentUser) return <Navigate to='/sign-in' />;
+  return currentUser.user.role === "WORK" ? <Outlet /> : <Navigate to='/' />;
 }

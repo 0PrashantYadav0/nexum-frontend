@@ -6,8 +6,10 @@ import {
   signInStart,
   signInSuccess,
   signInFailure,
+  removeWorkerStatus,
 } from '../redux/user/userSlice';
 import OAuth from '../components/OAuth';
+import Input from '../components/Input';
 
 export default function SignIn() {
   const [formData, setFormData] = useState({});
@@ -38,6 +40,7 @@ export default function SignIn() {
         document.cookie = `token=${data.token}`;
       }
       dispatch(signInSuccess(data));
+      dispatch(removeWorkerStatus())
       navigate('/');
     } catch (error) {
       dispatch(signInFailure(error.message));
@@ -47,19 +50,23 @@ export default function SignIn() {
     <div className='p-3 max-w-lg mx-auto'>
       <h1 className='text-3xl text-center font-semibold my-7'>Sign In</h1>
       <form onSubmit={handleSubmit} className='flex flex-col gap-4'>
-        <input
+        <Input
           type='username'
           placeholder='username'
+          label='Username'
           className='border p-3 rounded-lg'
           id='username'
           onChange={handleChange}
+          required
         />
-        <input
+        <Input
           type='password'
           placeholder='password'
+          label='Password'
           className='border p-3 rounded-lg'
           id='password'
           onChange={handleChange}
+          required
         />
 
         <button

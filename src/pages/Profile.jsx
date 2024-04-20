@@ -21,6 +21,8 @@ import {
 } from '../redux/user/userSlice';
 import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
+import Input from '../components/Input';
+
 export default function Profile() {
   const fileRef = useRef(null);
   const { currentUser, loading, error } = useSelector((state) => state.user);
@@ -116,7 +118,7 @@ export default function Profile() {
     <div className='p-3 max-w-lg mx-auto pb-24'>
       <h1 className='text-3xl font-semibold text-center my-7'>Profile</h1>
       <form onSubmit={handleSubmit} className='flex flex-col gap-4'>
-        <input
+        <Input
           onChange={(e) => setFile(e.target.files[0])}
           type='file'
           ref={fileRef}
@@ -142,33 +144,37 @@ export default function Profile() {
             ''
           )}
         </p>
-        <input
+        <Input
           type='text'
           placeholder='username'
+          label='Username'
           defaultValue={currentUser.user.username}
           id='username'
           className='border p-3 rounded-lg'
           onChange={handleChange}
         />
-        <input
+        <Input
           type='email'
           placeholder='email'
+          label='Email'
           id='email'
           defaultValue={currentUser.user.email}
           className='border p-3 rounded-lg'
           onChange={handleChange}
         />
-        <input
+        <Input
           type='text'
           placeholder='Phone Number'
+          label='Phone Number'
           id='phoneNumber'
           defaultValue={currentUser.user.phoneNumber}
           className='border p-3 rounded-lg'
           onChange={handleChange}
         />
-        <input
+        <Input
           type='password'
           placeholder='password'
+          label='Password'
           onChange={handleChange}
           id='password'
           className='border p-3 rounded-lg'
