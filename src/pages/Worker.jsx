@@ -15,7 +15,7 @@ function Worker() {
       const res = await axios.get("/api/worker/getWorker", {
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': token,
+          'Authorization': String(token),
         },
       });
       setData(res.data.data);

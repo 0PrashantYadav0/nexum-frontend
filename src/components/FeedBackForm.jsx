@@ -24,7 +24,12 @@ const FeedbackForm = ({userId, workerId}) => {
     console.log(feedbackData)
     e.preventDefault();
     try {
-      const res = await axios.post('/api/review/addReview', feedbackData);
+      const res = await axios.post('/api/review/addReview', feedbackData, {
+        headers: {
+          'Content-Type': 'application',
+          'Authorization': `Bearer ${localStorage.getItem('token')}`,
+        }
+      });
       console.log(res);
       setFeedbackData({
         message: '',

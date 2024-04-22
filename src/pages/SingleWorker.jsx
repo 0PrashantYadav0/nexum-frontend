@@ -49,7 +49,12 @@ function SingleWorker() {
 
   const handleMessageSubmit = () => {
     console.log(message)
-    axios.post('/api/message/addMessage', message)
+    axios.post('/api/message/addMessage', message, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${currentUser.token}`,
+      }
+    })
     .then((response) => {
       setMessage({});
     })
