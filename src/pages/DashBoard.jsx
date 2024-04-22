@@ -17,9 +17,11 @@ function Dashboard() {
 
   const getWorkerById = async () => {
     try {
+      const token = `Bearer ${currentUser.token}`;
       const res = await axios.get(`/api/worker/getWorkerById/${currentUser.user.id}`, {
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': String(token),
         },
       });
       setWorker(res.data.data[0])
@@ -31,7 +33,12 @@ function Dashboard() {
   const [reviewsData, setReviewsData] = useState([{}]);
   const getAllReview = async () => {
     try {
-      const res = await axios.get(`/api/review/getReviewByWorkerId/${currentUser.user.id}`);
+      const token = `Bearer ${currentUser.token}`;
+      const res = await axios.get(`/api/review/getReviewByWorkerId/${currentUser.user.id}`,{
+        headers: {
+          'Authorization': String(token),
+        },
+      });
       setReviewsData(res.data.data);
     } catch (error) {
       console.log(error);
@@ -41,7 +48,13 @@ function Dashboard() {
   const [messagesData, setMessagesData] = useState([{}]);
   const getAllMessages = async () => {
     try {
-      const res = await axios.get(`/api/message/getMessageByWorkerId/${currentUser.user.id}`);
+      const token = `Bearer ${currentUser.token}`;
+      const res = await axios.get(`/api/message/getMessageByWorkerId/${currentUser.user.id}`,{
+        headers: {
+          'Authorization': String(token),
+        },
+      },
+    );
       setMessagesData(res.data.data);
       console.log(res)
     } catch (error) {

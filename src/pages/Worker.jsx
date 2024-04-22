@@ -11,9 +11,11 @@ function Worker() {
   const fetchData = async () => {
     try {
       setLoading(true);
+      const token = `Bearer ${localStorage.getItem('token')}`;
       const res = await axios.get("/api/worker/getWorker", {
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': token,
         },
       });
       setData(res.data.data);

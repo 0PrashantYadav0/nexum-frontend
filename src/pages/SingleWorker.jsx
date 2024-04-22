@@ -24,9 +24,11 @@ function SingleWorker() {
 
   const getWorkerById = async () => {
     try {
+      const token = `Bearer ${currentUser.token}`;
       const res = await axios.get(`/api/worker/getWorkerById/${workerId}`, {
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + currentUser.token,
         },
       });
       setWorker(res.data.data[0])
@@ -60,7 +62,12 @@ function SingleWorker() {
   const [reviews, setReviews] = useState([{}]);
   const getAllReview = async () => {
     try {
-      const res = await axios.get(`/api/review/getReviewByWorkerId/${workerId}`);
+      const token = `Bearer ${currentUser.token}`;
+      const res = await axios.get(`/api/review/getReviewByWorkerId/${workerId}`,{
+        headers: {
+          'Authorization': String(token),
+        },
+      });
       setReviews(res.data.data);
       console.log(res.data.data)
     } catch (error) {
