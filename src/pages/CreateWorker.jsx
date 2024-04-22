@@ -9,7 +9,8 @@ import { app } from '../firebase';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { removeWorkerStatus } from '../redux/user/userSlice';
-import { Input } from 'postcss';
+import Input from '../components/Input';
+
 
 export default function CreateWorker() {
   const {currentUser} = useSelector((state) => state.user);
@@ -125,10 +126,11 @@ export default function CreateWorker() {
       })
       setLoading(true);
       setError(false);
-      const res = await fetch('/api/worker/addWorker', {
+      const res = await fetch('/api/worker/auth/addWorker', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Bearer ${currentUser.token}`,
         },
         body: JSON.stringify(formData),
       });

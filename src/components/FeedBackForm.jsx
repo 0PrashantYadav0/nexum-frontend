@@ -1,8 +1,10 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { BsStarFill, BsStar } from 'react-icons/bs';
+import { useSelector } from 'react-redux';
 
 const FeedbackForm = ({userId, workerId}) => {
+  const {currentUser} = useSelector(state => state.user);
   const [feedbackData, setFeedbackData] = useState({
     userId: userId,
     workerId: workerId,
@@ -26,12 +28,14 @@ const FeedbackForm = ({userId, workerId}) => {
     try {
       const res = await axios.post('/api/review/addReview', feedbackData, {
         headers: {
-          'Content-Type': 'application',
-          'Authorization': `Bearer ${localStorage.getItem('token')}`,
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${currentUser.token}`,
         }
       });
       console.log(res);
       setFeedbackData({
+        userId: userId,
+        workerId: workerId,
         message: '',
         rating: 0,
       });

@@ -127,10 +127,11 @@ const [imageUploadError, setImageUploadError] = useState(false);
       })
       setLoading(true);
       setError(false);
-      const res = await fetch('/api/worker/updateWorker', {
+      const res = await fetch('/api/worker/auth/updateWorker', {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Bearer ${currentUser.token}`,
         },
         body: JSON.stringify(formData),
       });
@@ -235,7 +236,7 @@ const [imageUploadError, setImageUploadError] = useState(false);
             <Input
               type='text'
               placeholder='state'
-              label='state'
+              label='State'
               className='mx-4 border p-3 rounded-lg'
               id='state'
               required

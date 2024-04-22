@@ -11,14 +11,13 @@ function Worker() {
   const fetchData = async () => {
     try {
       setLoading(true);
-      const token = `Bearer ${localStorage.getItem('token')}`;
-      const res = await axios.get("/api/worker/getWorker", {
+      const res = await axios.get("/api/worker/show/getWorker", {
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': String(token),
         },
       });
       setData(res.data.data);
+      console.log(res.data)
       setLoading(false);
       console.log(data)
     } catch (error) {
@@ -32,7 +31,7 @@ function Worker() {
     fetchData();
   }, []);
 
-  // console.log(data)
+  console.log(data)
 
   return (
     <section className="text-gray-600 body-font">

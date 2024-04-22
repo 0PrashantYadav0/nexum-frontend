@@ -3,6 +3,7 @@ import React from 'react'
 function Messages({messages}) {
   return (
     <div className='flex flex-wrap'>
+      {messages.length === 0 && <h1 className='h1 text-center'>No Messages</h1>}
       {messages.map((message) => (
         <div className="xl:w-1/3 md:w-1/2 p-4" key={message.id}>
         <div className="border border-gray-200 p-6 rounded-lg">

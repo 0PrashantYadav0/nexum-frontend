@@ -81,7 +81,8 @@ export default function Profile() {
           'Authorization': String(token),
         },
       });
-      const data = await res.json();
+      const data = res.data;
+      console.log(res.data)
       if (data.token === null) {
         dispatch(updateUserFailure(data.message));
         return;
@@ -117,8 +118,8 @@ export default function Profile() {
   return (
     <div className='p-3 max-w-lg mx-auto pb-24'>
       <h1 className='text-3xl font-semibold text-center my-7'>Profile</h1>
-      <form onSubmit={handleSubmit} className='flex flex-col gap-4'>
-        <Input
+      <form className='flex flex-col gap-4'>
+        <input
           onChange={(e) => setFile(e.target.files[0])}
           type='file'
           ref={fileRef}
@@ -181,16 +182,12 @@ export default function Profile() {
         />
         <button
           disabled={loading}
+          onClick={handleSubmit}
+          type='submit'
           className='bg-slate-700 text-white rounded-lg p-3 uppercase hover:opacity-95 disabled:opacity-80'
         >
           {loading ? 'Loading...' : 'Update'}
         </button>
-        <Link
-          className='bg-green-700 text-white p-3 rounded-lg uppercase text-center hover:opacity-95'
-          to={'/create-listing'}
-        >
-          Create Listing
-        </Link>
       </form>
       <div className='flex justify-between mt-5'>
         <span

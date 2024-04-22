@@ -25,7 +25,7 @@ function SingleWorker() {
   const getWorkerById = async () => {
     try {
       const token = `Bearer ${currentUser.token}`;
-      const res = await axios.get(`/api/worker/getWorkerById/${workerId}`, {
+      const res = await axios.get(`/api/worker/show/getWorkerById/${workerId}`, {
         headers: {
           'Content-Type': 'application/json',
           'Authorization': 'Bearer ' + currentUser.token,
@@ -57,6 +57,7 @@ function SingleWorker() {
     })
     .then((response) => {
       setMessage({});
+      window.location.reload();
     })
     .catch((error) => {
       console.log(error)
@@ -79,6 +80,19 @@ function SingleWorker() {
       console.log(error);
     }
   }
+
+  const Rating = (rating) => {
+    const stars = [];
+    for (let i = 1; i <= 5; i++) {
+      stars.push(
+        <span key={i} className="cursor-pointer">
+          <BsStarFill className='text-yellow-300'/>
+        </span>
+      );
+    }
+    return stars;
+  }
+  
   useEffect(() => {
     getAllReview();
     getWorkerById();
@@ -145,7 +159,7 @@ function SingleWorker() {
                 {reviews.map((review, index) => (
                   <div key={index} className='flex gap-2'>
                     <p className='px-4 text-gray-900'><span className='text-sm'>Comment : </span> {review.comment}</p>
-                    <p>Rating : {review.rating}</p>
+                    <div className='flex gap-1 items-center'>Rating : {review.rating} {Rating(review.rating)}</div>
                   </div>
                 ))}
                 {reviews.length === 0 ? <p>Sorry... No reviews yet.</p> : ""}
