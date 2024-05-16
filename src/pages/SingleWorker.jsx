@@ -109,7 +109,7 @@ function SingleWorker() {
       <div className="container px-5 mx-auto">
         <div className="lg:w-full mx-auto flex flex-wrap">
           <div className="w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
-            <h2 className="text-sm title-font capitalize text-gray-500 tracking-widest">{worker.userName}</h2>
+            <h2 className="text-sm title-font text-gray-500 tracking-widest">{worker.userName}</h2>
             <h1 className="text-gray-900 text-3xl title-font font-medium mb-1">
               <span className='capitalize px-1'>{worker.firstName}</span>
               <span className='capitalize px-1'>{worker.middleName}</span>
@@ -123,8 +123,8 @@ function SingleWorker() {
                 <span className="text-gray-600 ml-3">Total Reviews : {reviews.length}</span>
               </span>
             </div>
-            <div className='flex justify-center lg:gap-24 md:flex-row flex-col bg-gray-200 md:px-12 py-4 md:gap-12 gap-4 rounded-2xl mb-4 px-4'>
-            <div className="mt-6 items-center pb-5 border-b-2 border-gray-100 rounded-xl">
+            <div className='flex flex-row-reverse justify-between'>
+            <div className='flex justify-center lg:gap-24 md:flex-row flex-col md:px-12 py-4 md:gap-12 gap-4 rounded-2xl mb-4 px-4'>
             <img alt="ecommerce" className="h-80 object-cover object-center rounded" src={worker.photoUrl} />
             </div>
             <div className="mt-6 items-center pb-5 border-b-2 border-gray-100 rounded-xl">
@@ -174,8 +174,8 @@ function SingleWorker() {
           </div>
           
         </div>
-        <div className='py-4'>
-        <p className='py-4 text-center font-bold text-2xl'>Review</p>
+        <div className='py-4 px-10'>
+        <p className='py-4 font-bold text-xl'>Review</p>
         <FeedbackForm workerId={workerId} userId={currentUser.user.id}/>
         </div>
         <div className="flex gap-6 md:flex-row flex-col container px-5 py-24 mx-auto lg:w-4/5">

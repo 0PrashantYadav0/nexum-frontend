@@ -31,27 +31,33 @@ function Worker() {
     fetchData();
   }, []);
 
+  const totalRating = (reviews) => {
+    let totalRating = 0;
+    let count = reviews.length;
+    reviews.map((review) => {
+      totalRating+=review.rating
+    })
+    return (totalRating/count).toFixed(2);
+  }
+
   console.log(data)
 
   return (
-    <section className="text-gray-600 body-font">
-      <h1 className="text-3xl text-center font-semibold my-7">Workers</h1>
+    <section className="text-gray-100 body-font">
+      <h1 className="text-3xl text-center bg-text font-semibold my-7">Workers</h1>
       { data.length > 0 ? 
       <div className="container px-5 py-4 mx-auto">
         <div className="grid sm:grid-cols-2 md:grid-cols-3 grid-cols-1  gap-6">
           {data.map((worker) => (
-            <Link to={`/worker/${worker.userId}`} key={worker.userId} className="p-4 w-full bg-gray-300 rounded-xl flex-col justify-center items-center px-6 py-4 flex">
-            {console.log(worker)}
-            <div className='flex justify-start'>
-            <p className='text-balance py-1 text-start capitalize'>{worker.userName}</p>
-            </div>
+            <Link to={`/worker/${worker.userId}`} key={worker.userId} className="p-4 w-full bg-card rounded-xl flex-col justify-center items-center px-6 py-4 flex">
             <div className="block relative h-60 rounded overflow-hidden">
               <img alt="photoUrl" className="h-full block" src={worker.photoUrl} />
             </div>
-            <div className="mt-4">
-              <p className="text-gray-900 title-font text-md font-medium">{(worker.firstName ? worker.firstName : "") + " " + (worker.middleName ? worker.middleName : "") + " " + (worker.lastName ? worker.lastName : "")}</p>
-              <p className="mt-1 text-sm text-gray-900">Skills : {worker.skills}</p>
-              <p className="mt-1 text-sm text-gray-900">Rating : {worker.rating}</p>
+            <div className='w-full'>
+            <p className='text-lg pt-2 text-start capitalize'>{(worker.firstName ? worker.firstName : "") + " " + (worker.middleName ? worker.middleName : "") + " " + (worker.lastName ? worker.lastName : "")}</p>
+              <div className='flex justify-between'>
+              <p className="mt-1 text-sm text-gray-200">Skills : {worker.skills}</p>
+              </div>
             </div>
           </Link>
           ))}

@@ -3,49 +3,15 @@ import { useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { RiMenu3Line, RiCloseLine } from "react-icons/ri";
 import nexumno from "../assets/nexum-no.png"
+import { close, menu } from "../assets";
 
 export default function Header() {
+  const [active, setActive] = useState("Home");
+  const [toggle, setToggle] = useState(false);
   const { currentUser } = useSelector((state) => state.user);
   const [searchTerm, setSearchTerm] = useState('');
   const navigate = useNavigate();
   const [toggleMenu, setToggleMenu] = useState(false);
-
-  const MenuBlock = ({ toggleMenu }) => {
-    return (
-      <div className='absolute right-0 top-14 hidden max-lg:block z-20'>
-        {toggleMenu && <div className='bg-gray-400 p-8 text-end flex flex-col justify-end items-end '>
-          <Link to='/'>
-            <li className='text-slate-700 hover:underline'>
-              Home
-            </li>
-          </Link>
-          {currentUser ?
-          <>
-            <Link to='/workers'>
-              <li className=' text-slate-700 hover:underline'>
-                Workers
-              </li>
-            </Link>
-            <Link to='/hero'>
-              <li className=' text-slate-700 hover:underline'>
-                Hero
-              </li>
-            </Link>
-            </>: ''}
-          <Link to='/about'>
-            <li className=' text-slate-700 hover:underline'>
-              About
-            </li>
-          </Link>
-          <Link to='/contactus'>
-            <li className=' text-slate-700 hover:underline'>
-              Contact Us
-            </li>
-          </Link>
-        </div>}
-      </div>
-    )
-  }
 
   useEffect(() => {
     const urlParams = new URLSearchParams(location.search);
@@ -55,20 +21,23 @@ export default function Header() {
     }
   }, [location.search]);
   return (
-    <header className='bg-slate-200 shadow-md'>
-      <div className='flex justify-between items-center max-w-6xl mx-auto px-4 py-3'>
-        <Link to='/'>
+    <header className='bg-slate-400 shadow-md px-2 md:px-12'>
+      <nav className="w-full flex py-4 justify-between items-center navbar">
+      <Link to='/'>
           <h1 className='font-bold text-sm sm:text-xl flex flex-wrap items-center justify-center gap-4'>
-            <img src={nexumno} alt=""  className='h-10'/>
-            <span className='text-slate-500'>Nexum</span>
+            <span className='text-slate-900'>Nexum</span>
           </h1>
         </Link>
-        <ul className='flex gap-4'>
-          <Link to='/'>
+
+      <ul className="list-none sm:flex hidden justify-end items-center flex-1">
+      <ul className="list-none flex justify-end items-start gap-4">
+          
             <li className='hidden sm:inline text-slate-700 hover:underline'>
+            <Link to='/'>
               Home
+              </Link>
             </li>
-          </Link>
+          
           {currentUser ?
           <>
             <Link to='/workers'>
@@ -103,26 +72,68 @@ export default function Header() {
               <li className=' text-slate-700 hover:underline'> Sign in</li>
             )}
           </Link>
-          <div className='px-4'>
-            {toggleMenu ? (
-              <RiCloseLine
-                className='sm:hidden block'
-                color="#000"
-                size={27}
-                onClick={() => setToggleMenu((prev) => !prev)}
+          </ul>
+      </ul>
+
+      <div className="sm:hidden flex flex-1 justify-end items-center">
+        <img
+          src={toggle ? close : menu}
+          alt="menu"
+          className="w-[20px] h-[20px] object-contain"
+          onClick={() => setToggle(!toggle)}
+        />
+        
+
+        <div
+          className={`${
+            !toggle ? "hidden" : "flex"
+          } py-4 absolute top-20 right-0 min-w-[140px] rounded-xl sidebar bg-slate-900 px-3 `}
+        >
+          <ul className="list-none flex justify-end items-start flex-1 flex-col">
+          <Link to='/'>
+            <li className='sm:inline text-slate-300 hover:underline'>
+              Home
+            </li>
+          </Link>
+          {currentUser ?
+          <>
+            <Link to='/workers'>
+              <li className='sm:inline text-slate-300 hover:underline'>
+                Workers
+              </li>
+            </Link>
+            <Link to='/hero'>
+              <li className='sm:inline text-slate-300 hover:underline'>
+                Hero
+              </li>
+            </Link>
+            </>: ''}
+          <Link to='/about'>
+            <li className='sm:inline text-slate-300 hover:underline'>
+              About
+            </li>
+          </Link>
+          <Link to='/contactus'>
+            <li className=' text-slate-300 hover:underline'>
+              Contact Us
+            </li>
+          </Link>
+          
+          </ul>
+        </div>
+        <Link to='/profile' className='px-4'>
+            {currentUser ? (
+              <img
+                className='rounded-full h-7 w-7 object-cover aspect-video'
+                src={currentUser.user.photoUrl}
+                alt='profile'
               />
             ) : (
-              <RiMenu3Line
-                className='sm:hidden block'
-                color="#000"
-                size={27}
-                onClick={() => setToggleMenu((prev) => !prev)}
-              />
+              <p className='text-slate-700 hover:underline'> Sign in</p>
             )}
-          </div>
-          <MenuBlock toggleMenu={toggleMenu} />
-        </ul>
+          </Link>
       </div>
+    </nav>
     </header>
   );
 }

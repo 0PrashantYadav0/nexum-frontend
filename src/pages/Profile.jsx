@@ -118,6 +118,7 @@ export default function Profile() {
   return (
     <div className='p-3 max-w-lg mx-auto pb-24'>
       <h1 className='text-3xl font-semibold text-center my-7'>Profile</h1>
+      
       <form className='flex flex-col gap-4'>
         <input
           onChange={(e) => setFile(e.target.files[0])}
@@ -184,12 +185,12 @@ export default function Profile() {
           disabled={loading}
           onClick={handleSubmit}
           type='submit'
-          className='bg-slate-700 text-white rounded-lg p-3 uppercase hover:opacity-95 disabled:opacity-80'
+          className='bg-slate-700 text-white rounded-lg p-3 uppercase hover:opacity-95 disabled:opacity-80 mx-9'
         >
           {loading ? 'Loading...' : 'Update'}
         </button>
       </form>
-      <div className='flex justify-between mt-5'>
+      <div className='flex justify-between mt-5 mx-9'>
         <span
           className='text-blue-700 cursor-pointer'
         >

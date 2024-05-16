@@ -1,3 +1,22 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@layer utilities {
+  .bg-bar {
+    background: rgb(19,25,25);
+background: linear-gradient(117deg, rgba(19,25,25,1) 0%, rgba(1,1,10,1) 4%, rgba(198,221,226,1) 100%);
+  }
+
+  .bg-text {
+    background: linear-gradient(117deg, rgba(19,25,25,1) 0%, rgba(1,1,10,1) 4%, rgba(198,221,226,1) 100%);
+    background-clip: text;
+    -webkit-background-clip: text; 
+    -webkit-text-fill-color: transparent;
+  }
+
+  .bg-card{
+    background: rgb(67,71,71);
+background: radial-gradient(circle, rgb(99, 105, 105) 0%, rgb(33, 33, 66) 25%, rgb(56, 68, 77) 100%);
+  }
+  
+}

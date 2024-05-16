@@ -59,7 +59,7 @@ const FeedbackForm = ({userId, workerId}) => {
 
   return (
     <div className="w-full">
-      <form onSubmit={handleSubmit} className="bg-gray-100 shadow-md rounded p-12">
+      <form onSubmit={handleSubmit} className=" shadow-md rounded p-12">
         <div className="mb-4">
           <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="message">
             Message

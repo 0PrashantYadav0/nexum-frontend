@@ -1,7 +1,9 @@
 import React from 'react'
 import nexum from "../assets/nexum.png"
+import { useSelector } from 'react-redux';
 
 function Footer() {
+  const { currentUser } = useSelector((state) => state.user);
   return (
     <footer className="text-gray-600 body-font">
       <div className="container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col">

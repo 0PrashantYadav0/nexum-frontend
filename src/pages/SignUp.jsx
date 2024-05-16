@@ -104,23 +104,25 @@ export default function SignUp() {
 
         <button
           disabled={loading}
-          className='bg-slate-700 text-white p-3 rounded-lg uppercase hover:opacity-95 disabled:opacity-80'
+          className='bg-slate-700 text-white p-3 rounded-lg uppercase hover:opacity-95 mx-8 disabled:opacity-80'
         >
           {loading ? 'Loading...' : 'Sign Up'}
         </button>
         <OAuth role={formData.role}/>
-        <div className='flex gap-4'>
-        <p>Sign In as Worker : </p>
+        <div className='flex gap-4 px-8'>
+        <p className='text-lg'>Sign In as Worker : </p>
           <input type="checkbox" value={"WORKER"} onChange={handleCheckChange} onAbort={()=>setFormData({...formData, role:"USER"})}/>
         </div>
       </form>
-      <div className='flex gap-2 mt-5'>
+      <div className='flex gap-2 mt-5 mx-8'>
         <p>Have an account?</p>
         <Link to={'/sign-in'}>
           <span className='text-blue-700'>Sign in</span>
         </Link>
       </div>
+      <div className='mx-8'>
       {error && <p className='text-red-500 mt-5'>{error}</p>}
+      </div>
     </div>
   );
 }

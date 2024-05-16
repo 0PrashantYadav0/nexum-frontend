@@ -5,48 +5,49 @@ function ProfileData({ worker }) {
   const { currentUser } = useSelector((state) => state.user);
   console.log(currentUser)
   return (
-    <div className="text-gray-600 flex justify-center body-font">
-      <img className="w-1/3 h-full block mx-auto mb-10 object-cover object-center rounded" alt="hero" src={worker.photoUrl || currentUser.user.photoUrl} />
-      <div className="w-1/2 grid grid-cols-2 mt-6 pb-5 border-b-2 border-gray-100 rounded-xl">
-        <div className="p-4">
-          <div className="border border-gray-200 p-6 rounded-lg">
-          <h2 className="text-lg text-gray-900 font-medium title-font mb-2">Skill</h2>
-            <p className="leading-relaxed text-base">{worker.skills}</p>
+    <div className="lg:w-full mx-auto flex flex-wrap justify-around bg-bar text-white rounded-lg">
+          <div className="w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
+            <h2 className="text-sm title-font text-gray-500 tracking-widest">{worker.userName}</h2>
+            <h1 className="text-gray-300 text-3xl title-font font-medium mb-1">
+              <span className='capitalize px-1'>{worker.firstName}</span>
+              <span className='capitalize px-1'>{worker.middleName}</span>
+              <span className='capitalize px-1'>{worker.lastName}</span>
+            </h1>
+            
+            <div className='flex flex-row-reverse justify-around'>
+            <div className='flex justify-center lg:gap-24 md:flex-row flex-col md:px-12 py-4 md:gap-12 gap-4 rounded-2xl mb-4 px-4'>
+            <img alt="ecommerce" className="h-80 object-cover object-center rounded" src={worker.photoUrl} />
+            </div>
+            <div className="mt-6 items-center pb-5  border-gray-100 rounded-xl">
+              <div className=''>
+                <p className='text-lg font-semibold'>Skill : </p>
+                <p className='px-4 text-gray-300'>{worker.skills}</p>
+              </div>
+              <div className=''>
+                <p className='text-lg font-semibold'>Contact Details</p>
+                <p className='px-4 text-gray-300'>{worker.email}</p>
+                <p className='px-4 text-gray-300'>{worker.phoneNo}</p>
+              </div>
+              <div>
+                <p className='text-lg font-semibold'>Address : </p>
+                <p className='px-4 text-gray-300'>Local Address : {worker.address}</p>
+                <p className='px-4 text-gray-300'>State : {worker.state} </p>
+                <p className='px-4 text-gray-300'>City : {worker.city}</p>
+                <p className='px-4 text-gray-300'>Country : {worker.country}</p>
+              </div>
+              <div>
+                <p className='text-lg font-semibold'>Exprience : </p>
+                <p className='px-4 text-gray-300'>{worker.experience}</p>
+              </div>
+              <div>
+                <p className='text-lg font-semibold'>About : </p>
+                <p className='px-4 text-gray-300 text-wrap'>{worker.about}</p>
+              </div>
+            </div>
+            </div>
           </div>
+          
         </div>
-        <div className="p-4">
-          <div className="border border-gray-200 p-6 rounded-lg">
-            <h2 className="text-lg text-gray-900 font-medium title-font mb-2">Exprience</h2>
-            <p className="leading-relaxed text-base">{worker.experience}</p>
-          </div>
-        </div>
-        <div className="p-4">
-          <div className="border border-gray-200 p-6 rounded-lg">
-            <h2 className="text-lg text-gray-900 font-medium title-font mb-2">Contact Details</h2>
-            <p className="leading-relaxed text-base">Email : {worker.email}</p>
-            <p className="leading-relaxed text-base">Phone Number : {worker.phoneNo}</p>
-          </div>
-        </div>
-        <div className="p-4">
-          <div className="border border-gray-200 p-6 rounded-lg">
-            <h2 className="text-lg text-gray-900 font-medium title-font mb-2">About</h2>
-            <p className="leading-relaxed text-base">{worker.about}</p>
-          </div>
-        </div>
-        <div className="p-4">
-          <div className="border border-gray-200 p-6 rounded-lg">
-            <h2 className="text-lg text-gray-900 font-medium title-font mb-2">Address</h2>
-            <p className="leading-relaxed text-base">Local Address : {worker.address}</p>
-            <p className="leading-relaxed text-base">State : {worker.state}</p>
-            <p className="leading-relaxed text-base">City : {worker.city}</p>
-            <p className="leading-relaxed text-base">Country : {worker.country}</p>
-          </div>
-        </div>
-        
-        
-      </div>
-
-    </div>
   )
 }
 
