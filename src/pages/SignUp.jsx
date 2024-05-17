@@ -28,20 +28,17 @@ export default function SignUp() {
       ...formData,
       [e.target.id]: e.target.value,
     })
-    console.log(formData);
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       setLoading(true);
-      const res = await axios.post('/api/register', formData, {
+      const res = await axios.post('https://nexum-backend-production-486e.up.railway.app/api/register', formData, {
         headers: {
           'Content-Type': 'application/json',
         },
       });
       const data = res.data;
-      console.log(res)
-      console.log(data)
       if (data.token === null) {
         setLoading(false);
         setError(data.message);

@@ -48,7 +48,6 @@ const [imageUploadError, setImageUploadError] = useState(false);
 
   const handleImageSubmit = (e) => {
     if (files.length > 0 && files.length + images.length < 7) {
-      console.log(images)
       setUploading(true);
       setImageUploadError(false);
       const promises = [];
@@ -60,8 +59,6 @@ const [imageUploadError, setImageUploadError] = useState(false);
         .then((urls) => {
           images.push(...urls);
           setImageUploadError(false);
-          console.log(urls)
-          console.log(images[0])
           setFormData({...formData, photoUrl: images[0]})
           setUploading(false);
         })
@@ -73,7 +70,6 @@ const [imageUploadError, setImageUploadError] = useState(false);
       setImageUploadError('You can only upload 6 images per listing');
       setUploading(false);
     }
-    console.log(images, "images")
   };
 
   const storeImage = async (file) => {
@@ -120,14 +116,13 @@ const [imageUploadError, setImageUploadError] = useState(false);
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      console.log(formData)
       setFormData({
         ...formData,
         photoUrl: images[0],
       })
       setLoading(true);
       setError(false);
-      const res = await fetch('/api/worker/auth/updateWorker', {
+      const res = await fetch('https://nexum-backend-production-486e.up.railway.app/api/worker/auth/updateWorker', {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

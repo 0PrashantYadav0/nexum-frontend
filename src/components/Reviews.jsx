@@ -1,7 +1,6 @@
 import React from 'react'
 
 function Reviews({reviews}) {
-  console.log(reviews)
   return (
     <div className='flex flex-wrap'>
       {reviews.length === 0 && <h1 className='h1 text-center'>No Reviews</h1>}

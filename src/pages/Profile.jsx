@@ -75,14 +75,13 @@ export default function Profile() {
     try {
       dispatch(updateUserStart());
       const token = `Bearer ${currentUser.token}`;
-      const res = await axios.post(`/api/update/${currentUser.user.id}`, formData, {
+      const res = await axios.post(`https://nexum-backend-production-486e.up.railway.app/api/update/${currentUser.user.id}`, formData, {
         headers: {
           'Content-Type': 'application/json',
           'Authorization': String(token),
         },
       });
       const data = res.data;
-      console.log(res.data)
       if (data.token === null) {
         dispatch(updateUserFailure(data.message));
         return;
@@ -100,7 +99,7 @@ export default function Profile() {
       dispatch(signOutUserStart());
       const token = `Bearer ${currentUser.token}`;
       
-      const res = await axios.get('/api/logout', {
+      const res = await axios.get('https://nexum-backend-production-486e.up.railway.app/api/logout', {
         headers: {
           'Authorization': String(token),
         },
@@ -111,7 +110,6 @@ export default function Profile() {
         navigate('/sign-in')
       }
     } catch (error) {
-      console.log(error)
     }
   };
 

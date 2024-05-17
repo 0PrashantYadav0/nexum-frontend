@@ -11,19 +11,16 @@ function Worker() {
   const fetchData = async () => {
     try {
       setLoading(true);
-      const res = await axios.get("/api/worker/show/getWorker", {
+      const res = await axios.get("https://nexum-backend-production-486e.up.railway.app/api/worker/show/getWorker", {
         headers: {
           'Content-Type': 'application/json',
         },
       });
       setData(res.data.data);
-      console.log(res.data)
       setLoading(false);
-      console.log(data)
     } catch (error) {
       setLoading(false);
       setError(error.message);
-      // console.log(error)
     }
   }
 
@@ -40,7 +37,6 @@ function Worker() {
     return (totalRating/count).toFixed(2);
   }
 
-  console.log(data)
 
   return (
     <section className="text-gray-100 body-font">

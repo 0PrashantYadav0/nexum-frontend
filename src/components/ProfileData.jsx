@@ -3,7 +3,6 @@ import { useSelector } from 'react-redux'
 
 function ProfileData({ worker }) {
   const { currentUser } = useSelector((state) => state.user);
-  console.log(currentUser)
   return (
     <div className="lg:w-full mx-auto flex flex-wrap justify-around bg-bar text-white rounded-lg">
           <div className="w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">

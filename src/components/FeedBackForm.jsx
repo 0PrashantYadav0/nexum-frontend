@@ -23,16 +23,14 @@ const FeedbackForm = ({userId, workerId}) => {
   };
 
   const handleSubmit = async(e) => {
-    console.log(feedbackData)
     e.preventDefault();
     try {
-      const res = await axios.post('/api/review/addReview', feedbackData, {
+      const res = await axios.post('https://nexum-backend-production-486e.up.railway.app/api/review/addReview', feedbackData, {
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${currentUser.token}`,
         }
       });
-      console.log(res);
       setFeedbackData({
         userId: userId,
         workerId: workerId,
@@ -41,7 +39,6 @@ const FeedbackForm = ({userId, workerId}) => {
       });
       window.location.reload();
     } catch (error) {
-      console.log(error)
     }
   };
 

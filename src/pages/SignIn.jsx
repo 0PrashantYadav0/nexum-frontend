@@ -26,7 +26,7 @@ export default function SignIn() {
     e.preventDefault();
     try {
       dispatch(signInStart());
-      const res = await axios.post('/api/login', formData, {
+      const res = await axios.post('https://nexum-backend-production-486e.up.railway.app/api/login', formData, {
         headers: {
         'Content-Type': 'application/json',
         },
