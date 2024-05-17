@@ -16,7 +16,8 @@ function Worker() {
           'Content-Type': 'application/json',
         },
       });
-      setData(res.data.data);
+
+      setData(res.data.data.reverse());
       setLoading(false);
     } catch (error) {
       setLoading(false);
