@@ -11,6 +11,12 @@ const firebaseConfig = {
   measurementId: import.meta.env.VITE_APP_MEASUREMENTID
 };
 
+// ReactDOM.createRoot(document.getElementById('root')).render(
+  //   <Provider store={store}>
+  //     <PersistGate loading={null} persistor={persistor}>
+  //       <App />
+  //     </PersistGate>
+  //   </Provider>
 
 export const app = initializeApp(firebaseConfig);
 

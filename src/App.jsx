@@ -41,3 +41,10 @@ export default function App() {
     </BrowserRouter>
   );
 }
+
+{/* <Route path='/' element={<Home />} />
+        <Route path='/sign-in' element={<AuthLayout authentication={false}><SignIn /></AuthLayout>} />
+        <Route path='/sign-up' element={<AuthLayout authentication={false}><SignUp /></AuthLayout>} />
+        <Route path='/about' element={<About />} />
+        <Route path='/contactus' element={<ContactUs />} />
+        <Route element= {<WrokerProtected/>}></Route> */}

@@ -7,7 +7,6 @@ export default function Protected({ children, authentication = true}) {
   const [loader, setLoader] = useState(true);
   const { currentUser } = useSelector((state) => state.user);
   const {workerFirst} = useSelector((state) => state.user);
-  console.log(workerFirst)
   const authStatus = useSelector((state) => state.user.status);
 
   useEffect(() => {

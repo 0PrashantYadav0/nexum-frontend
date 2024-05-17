@@ -14,7 +14,7 @@ export default function OAuth({role = 'USER'}) {
 
       const result = await signInWithPopup(auth, provider);
 
-      const res = await fetch('/api/google', {
+      const res = await fetch('https://nexum-backend-production-486e.up.railway.app/api/google', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -33,7 +33,6 @@ export default function OAuth({role = 'USER'}) {
       }
       else navigate('/');
     } catch (error) {
-      console.log('could not sign in with google');
     }
   };
   return (

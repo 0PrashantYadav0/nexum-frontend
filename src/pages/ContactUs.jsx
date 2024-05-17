@@ -1,70 +1,29 @@
-import { Input } from 'postcss'
 import React from 'react'
 
 function ContactUs() {
+  
   return (
-    <section className="text-gray-600 body-font relative">
-      <div className="container px-5 py-24 mx-auto">
-        <div className="flex flex-col text-center w-full mb-12">
-          <h1 className="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">Contact Us</h1>
-          <p className="lg:w-2/3 mx-auto leading-relaxed text-base">We are available 24/7 Feel free to contact us any time.</p>
-        </div>
-        <div className="lg:w-1/2 md:w-2/3 mx-auto">
-          <div className="flex flex-wrap -m-2">
-            <div className="p-2 w-1/2">
-              <div className="relative">
-                <label htmlFor="name" className="leading-7 text-sm text-gray-600">Name</label>
-                <input type="text" id="name" name="name" label='Name' className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"/>
-              </div>
-            </div>
-            <div className="p-2 w-1/2">
-              <div className="relative">
-                <label htmlFor="email" className="leading-7 text-sm text-gray-600">Email</label>
-                <input type="email" id="email" name="email" label='Email' className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"/>
-              </div>
-            </div>
-            <div className="p-2 w-full">
-              <div className="relative">
-                <label htmlFor="message" className="leading-7 text-sm text-gray-600">Message</label>
-                <textarea id="message" name="message" className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"></textarea>
-              </div>
-            </div>
-            <div className="p-2 w-full">
-              <button className="flex mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">Enter</button>
-            </div>
-            <div className="p-2 w-full pt-8 mt-8 border-t border-gray-200 text-center">
-              <a className="text-indigo-500">iiit@ac.in</a>
-              <p className="leading-normal my-5">Lucknow
-                <br/>Uttar Pradesh
-              </p>
-              <span className="inline-flex">
-                <a className="text-gray-500">
-                  <svg fill="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="w-5 h-5" viewBox="0 0 24 24">
-                    <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
-                  </svg>
-                </a>
-                <a className="ml-4 text-gray-500">
-                  <svg fill="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="w-5 h-5" viewBox="0 0 24 24">
-                    <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"></path>
-                  </svg>
-                </a>
-                <a className="ml-4 text-gray-500">
-                  <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="w-5 h-5" viewBox="0 0 24 24">
-                    <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
-                    <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01"></path>
-                  </svg>
-                </a>
-                <a className="ml-4 text-gray-500">
-                  <svg fill="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="w-5 h-5" viewBox="0 0 24 24">
-                    <path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"></path>
-                  </svg>
-                </a>
-              </span>
-            </div>
+    <section class="bg-white light:bg-gray-900">
+      <div class="py-8 lg:py-16 px-4 mx-auto max-w-screen-md">
+        <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-center text-gray-900 light:text-white">Contact Us</h2>
+        <p class="mb-8 lg:mb-16 font-light text-center text-gray-500 light:text-gray-400 sm:text-xl">Got a technical issue? Want to send feedback about a beta feature? Need details about our Business plan? Let us know.</p>
+        <form action="#" class="space-y-8">
+          <div>
+              <label for="email" class="block mb-2 text-sm font-medium text-gray-900 light:text-gray-300">Your email</label>
+              <input type="email" id="email" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 light:bg-gray-700 light:border-gray-600 light:placeholder-gray-400 light:text-white light:focus:ring-primary-500 light:focus:border-primary-500 light:shadow-sm-light" placeholder="email@gmail.com" required/>
           </div>
-        </div>
-      </div>
-    </section>
+          <div>
+              <label for="subject" class="block mb-2 text-sm font-medium text-gray-900 light:text-gray-300">Subject</label>
+              <input type="text" id="subject" class="block p-3 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 shadow-sm focus:ring-primary-500 focus:border-primary-500 light:bg-gray-700 light:border-gray-600 light:placeholder-gray-400 light:text-white light:focus:ring-primary-500 light:focus:border-primary-500 light:shadow-sm-light" placeholder="Let us know how we can help you" required/>
+          </div>
+          <div class="sm:col-span-2">
+              <label for="message" class="block mb-2 text-sm font-medium text-gray-900 light:text-gray-400">Your message</label>
+              <textarea id="message" rows="6" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg shadow-sm border border-gray-300 focus:ring-primary-500 focus:border-primary-500 light:bg-gray-700 light:border-gray-600 light:placeholder-gray-400 light:text-white light:focus:ring-primary-500 light:focus:border-primary-500" placeholder="Leave a comment..."></textarea>
+          </div>
+          <button type="submit" class="py-3 px-5 text-sm font-medium text-center text-white rounded-lg bg-primary-700 sm:w-fit hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 light:bg-primary-600 light:hover:bg-primary-700 light:focus:ring-primary-800">Send message</button>
+        </form>
+    </div>
+  </section>
   )
 }
 

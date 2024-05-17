@@ -7,7 +7,7 @@ export default defineConfig({
   server: {
     proxy:{
       '/api':{
-        target : "http://localhost:8080",
+        target : "https://nexum-backend-production-486e.up.railway.app/",
         secure: false,
       }
     }
