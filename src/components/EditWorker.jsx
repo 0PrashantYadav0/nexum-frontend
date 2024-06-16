@@ -122,7 +122,7 @@ const [imageUploadError, setImageUploadError] = useState(false);
       })
       setLoading(true);
       setError(false);
-      const res = await fetch('https://nexum-backend-production-486e.up.railway.app/api/worker/auth/updateWorker', {
+      const res = await fetch('/api/worker/auth/updateWorker', {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

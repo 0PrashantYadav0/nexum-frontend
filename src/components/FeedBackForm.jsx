@@ -25,7 +25,7 @@ const FeedbackForm = ({userId, workerId}) => {
   const handleSubmit = async(e) => {
     e.preventDefault();
     try {
-      const res = await axios.post('https://nexum-backend-production-486e.up.railway.app/api/review/addReview', feedbackData, {
+      const res = await axios.post('/api/review/addReview', feedbackData, {
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${currentUser.token}`,

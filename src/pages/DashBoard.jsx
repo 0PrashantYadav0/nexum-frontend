@@ -47,7 +47,7 @@ function Dashboard() {
   const getAllMessages = async () => {
     try {
       const token = `Bearer ${currentUser.token}`;
-      const res = await axios.get(`https://nexum-backend-production-486e.up.railway.app/api/message/getMessageByWorkerId/${currentUser.user.id}`,{
+      const res = await axios.get(`/api/message/getMessageByWorkerId/${currentUser.user.id}`,{
         headers: {
           'Authorization': String(token),
         },

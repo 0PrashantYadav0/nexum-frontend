@@ -121,7 +121,7 @@ export default function CreateWorker() {
       })
       setLoading(true);
       setError(false);
-      const res = await fetch('https://nexum-backend-production-486e.up.railway.app/api/worker/auth/addWorker', {
+      const res = await fetch('/api/worker/auth/addWorker', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

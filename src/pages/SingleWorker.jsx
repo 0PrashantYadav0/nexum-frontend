@@ -25,7 +25,7 @@ function SingleWorker() {
   const getWorkerById = async () => {
     try {
       const token = `Bearer ${currentUser.token}`;
-      const res = await axios.get(`https://nexum-backend-production-486e.up.railway.app/api/worker/show/getWorkerById/${workerId}`, {
+      const res = await axios.get(`/api/worker/show/getWorkerById/${workerId}`, {
         headers: {
           'Content-Type': 'application/json',
           'Authorization': 'Bearer ' + currentUser.token,
@@ -46,7 +46,7 @@ function SingleWorker() {
   }
 
   const handleMessageSubmit = () => {
-    axios.post('https://nexum-backend-production-486e.up.railway.app/api/message/addMessage', message, {
+    axios.post('/api/message/addMessage', message, {
       headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${currentUser.token}`,
@@ -65,7 +65,7 @@ function SingleWorker() {
   const getAllReview = async () => {
     try {
       const token = `Bearer ${currentUser.token}`;
-      const res = await axios.get(`https://nexum-backend-production-486e.up.railway.app/api/review/getReviewByWorkerId/${workerId}`,{
+      const res = await axios.get(`/api/review/getReviewByWorkerId/${workerId}`,{
         headers: {
           'Authorization': String(token),
         },

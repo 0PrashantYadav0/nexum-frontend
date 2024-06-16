@@ -33,7 +33,7 @@ export default function SignUp() {
     e.preventDefault();
     try {
       setLoading(true);
-      const res = await axios.post('https://nexum-backend-production-486e.up.railway.app/api/register', formData, {
+      const res = await axios.post('/api/register', formData, {
         headers: {
           'Content-Type': 'application/json',
         },

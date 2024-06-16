@@ -11,7 +11,7 @@ function Worker() {
   const fetchData = async () => {
     try {
       setLoading(true);
-      const res = await axios.get("https://nexum-backend-production-486e.up.railway.app/api/worker/show/getWorker", {
+      const res = await axios.get("/api/worker/show/getWorker", {
         headers: {
           'Content-Type': 'application/json',
         },
