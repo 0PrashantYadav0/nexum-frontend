@@ -11,8 +11,7 @@ export default defineConfig({
       '/api':{
         target : "https://nexum-backend-production-486e.up.railway.app/",
         secure: false,
-        changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, ''),
+        changeOrigin: true
       }
     }
   }
